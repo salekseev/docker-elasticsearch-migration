@@ -18,7 +18,7 @@ build:
 
 run:
 	@if ! docker images $(NAME) | awk '{ print $$2 }' | grep -q -F $(VERSION); then echo "$(NAME) version $(VERSION) is not yet built. Please run 'make build'"; false; fi
-	@if type open; then sleep 10 && open http://localhost:$(PORT); fi &
+	@if type open; then sleep 10 && open http://localhost:$(PORT)/_plugin/elasticsearch-migration; fi &
 	docker run --rm -p $(PORT):9200 $(NAME):$(VERSION)
 
 clean:
